@@ -30,17 +30,21 @@ Escolha o modo de exibição no seletor ao lado:
 
 | Modo | Descrição |
 |---|---|
-| Full line | Linha completa. Blocos FANUC `P[N:"..."]{}` são exibidos inteiros. |
+| Full line | Linha completa tanto de ABB, quanto FANUC, ideal para "MoveL/J" ou o modelo Renault de "SR_SOUDER". Blocos FANUC `P[N:"..."]{}` são exibidos inteiros, após mostrar a linha primeiro. |
 | First 2 words | Apenas as duas primeiras palavras de cada linha encontrada. |
 | Robtarget XYZ | Extrai nome e coordenadas X, Y, Z de declarações `robtarget` (ABB). |
 
 ### 3. Comparar resultados
+Ideal utilizar os snapshots/resultado de buscas do modo "Full Line",
 Vá para a aba **Compare**, selecione dois snapshots nos seletores e clique em **Compare**.  
 O resultado mostrará quais entradas estão `OK` (presentes em ambos) ou `MISSING` (ausentes no segundo).
 
 ### 4. Exportar para CSV
 Após uma busca, clique em **Export CSV** para salvar os resultados.  
 O arquivo gerado usa `;` como separador e cada token da linha vira uma coluna separada.
+Modo "Full Line" exportara a linha completa
+Modo "First 2 Words" proprio nome diz, mais para "MoveL/J", "SR_SOUDER", etc
+Modo "Robtarget XYZ" exporta declaraçao das vias, contendo apenas o DataType, o nome da via e as coordenadas X, Y, Z
 
 ---
 
@@ -100,11 +104,10 @@ target_compile_features(app PRIVATE cxx_std_17)
 
 O programa lê qualquer arquivo de texto plano. Foi projetado e testado com:
 
+- Arquivos `.txt` padrão
 - Arquivos `.ls` de robôs **FANUC**
 - Arquivos `.mod` / `.pgf` de robôs **ABB** (RAPID)
 
 ---
 
-## Licença
 
-Projeto interno — SIM ROBOTICS.
